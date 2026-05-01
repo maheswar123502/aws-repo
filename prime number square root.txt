@@ -1,0 +1,31 @@
+SET SERVEROUTPUT ON;
+
+CREATE OR REPLACE PROCEDURE first_n_primes(n IN NUMBER) IS
+    num      NUMBER := 2;
+    total    NUMBER := 0;
+    i        NUMBER;
+    is_prime BOOLEAN;
+    sqrt_val NUMBER;
+BEGIN
+    WHILE total < n LOOP
+        is_prime := TRUE;
+        sqrt_val := SQRT(num);  -- calculate square root
+
+        FOR i IN 2 .. FLOOR(sqrt_val) LOOP
+            IF MOD(num, i) = 0 THEN
+                is_prime := FALSE;
+                EXIT;
+            END IF;
+        END LOOP;
+
+        IF is_prime THEN
+            DBMS_OUTPUT.PUT_LINE('Number: ' || num || 
+                                 '  Square Root: ' || ROUND(sqrt_val,2));
+            total := total + 1;
+        END IF;
+
+        num := num + 1;
+    END LOOP;
+END;
+/
+ EXEC first_n_primes(5);
