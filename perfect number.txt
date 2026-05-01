@@ -1,0 +1,20 @@
+SET SERVEROUTPUT ON;
+CREATE OR REPLACE PROCEDURE perfect_check(num IN NUMBER) IS
+    i     NUMBER := 1;
+    total NUMBER := 0;
+BEGIN
+    WHILE i <= num / 2 LOOP
+        IF MOD(num, i) = 0 THEN
+            total := total + i;
+        END IF;
+        i := i + 1;
+    END LOOP;
+
+    IF total = num THEN
+        DBMS_OUTPUT.PUT_LINE('Perfect Number');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('Not a Perfect Number');
+    END IF;
+END perfect_check;
+/
+EXEX perfect_check(28);
