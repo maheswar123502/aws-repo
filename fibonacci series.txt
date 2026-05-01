@@ -1,0 +1,23 @@
+SET SERVEROUTPUT ON;
+
+CREATE OR REPLACE PROCEDURE fibonacci_series(n IN NUMBER) IS
+    a NUMBER := 0;
+    b NUMBER := 1;
+    c NUMBER;
+    i NUMBER := 1;
+BEGIN
+    -- Print first number
+    DBMS_OUTPUT.PUT_LINE(a);
+
+    WHILE i < n LOOP
+        c := a + b;
+        a := b;
+        b := c;
+
+        DBMS_OUTPUT.PUT_LINE(a);
+
+        i := i + 1;
+    END LOOP;
+END;
+/
+exec fibonacci_series(5);

@@ -1,0 +1,20 @@
+SET SERVEROUTPUT ON;
+
+DECLARE
+    num NUMBER;
+    temp NUMBER;
+    digit NUMBER;
+    sum_digits NUMBER := 0;
+BEGIN
+    num := &num;  -- user input
+    temp := num;
+
+    WHILE temp > 0 LOOP
+        digit := MOD(temp, 10);        -- get last digit
+        sum_digits := sum_digits + digit;
+        temp := FLOOR(temp / 10);      -- remove last digit
+    END LOOP;
+
+    DBMS_OUTPUT.PUT_LINE('Sum of digits of ' || num || ' is: ' || sum_digits);
+END;
+/

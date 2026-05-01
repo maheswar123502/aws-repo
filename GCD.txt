@@ -1,0 +1,17 @@
+SET SERVEROUTPUT ON;
+
+CREATE OR REPLACE PROCEDURE gcd_calc(a IN NUMBER, b IN NUMBER) IS
+    x NUMBER := a;
+    y NUMBER := b;
+    temp NUMBER;
+BEGIN
+    WHILE y != 0 LOOP
+        temp := y;
+        y := MOD(x, y);
+        x := temp;
+    END LOOP;
+
+    DBMS_OUTPUT.PUT_LINE('GCD is: ' || x);
+END;
+/
+ exec gcd_calc(12,18);

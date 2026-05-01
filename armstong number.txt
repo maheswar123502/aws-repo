@@ -1,0 +1,28 @@
+SET SERVEROUTPUT ON;
+
+DECLARE
+    num NUMBER;
+    temp NUMBER;
+    rem NUMBER;
+    result NUMBER := 0;
+BEGIN
+    -- Take user input
+    num := &num;
+
+    temp := num;
+
+    -- Armstrong logic
+    WHILE temp > 0 LOOP
+        rem := MOD(temp, 10);
+        result := result + (rem * rem * rem);
+        temp := FLOOR(temp / 10);
+    END LOOP;
+
+    -- Check condition
+    IF result = num THEN
+        DBMS_OUTPUT.PUT_LINE(num || ' is an Armstrong number');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE(num || ' is NOT an Armstrong number');
+    END IF;
+END;
+/
